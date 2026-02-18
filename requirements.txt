@@ -1,0 +1,83 @@
+# ── requirements.txt ──────────────────────────────────────────────────────────
+# Core
+pandas==2.2.0
+numpy==1.26.4
+scikit-learn==1.4.0
+
+# NLP / Transformers
+transformers==4.39.0
+torch==2.2.1
+datasets==2.18.0
+gensim==4.3.2
+nltk==3.8.1
+
+# Visualization
+matplotlib==3.8.3
+seaborn==0.13.2
+wordcloud==1.9.3
+plotly==5.19.0
+
+# Notebook
+jupyter==1.0.0
+ipywidgets==8.1.2
+
+# Azure ML
+azure-ai-ml==1.14.0
+azure-identity==1.15.0
+
+# Utilities
+tqdm==4.66.2
+python-dotenv==1.0.1
+
+
+# ── .gitignore ─────────────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.egg-info/
+.env
+.venv/
+venv/
+env/
+
+# Data — don't commit large files
+data/*.csv
+data/*.parquet
+!data/sample_reviews.csv        # ← only commit the sample
+
+# Model weights — too large for GitHub
+models/distilbert-sentiment/pytorch_model.bin
+models/distilbert-sentiment/model.safetensors
+models/lda/lda_model
+
+# Azure credentials
+azure_ml/.env
+*.key
+
+# Jupyter checkpoints
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+
+# ── azure_ml/environment.yml ──────────────────────────────────────────────────
+name: distilbert-env
+channels:
+  - defaults
+  - conda-forge
+dependencies:
+  - python=3.10
+  - pip
+  - pip:
+    - transformers==4.39.0
+    - torch==2.2.1
+    - numpy==1.26.4
+    - pandas==2.2.0
+    - scikit-learn==1.4.0
+    - azure-ai-ml==1.14.0
